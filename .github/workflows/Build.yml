@@ -30,6 +30,7 @@ jobs:
 
       outputs:
         update: ${{ env.update }}
+        ver: ${{ env.update_ver }}
 
     Update:
       runs-on: ubuntu-latest
@@ -50,7 +51,7 @@ jobs:
           uses: robinraju/release-downloader@v1
           with:
             repository: "MaaAssistantArknights/MaaAssistantArknights"
-            latest: true
+            tag: ${{ needs.Build.outputs.ver }}
             out-file-path: "."
             fileName: "*"
             zipBall: true
