@@ -6,8 +6,8 @@ from .ISSUE_BODY import BODY
 
 VERSION_PATH = Path(Path.cwd(), "version")
 NOTE_PATH = Path(Path.cwd(), "note.md")
-NOTICE_URL = "https://weinibuliu.github.io/post/1.html"
-DOWNLOAD_URL = "https://weinibuliu.github.io/post/2.html"
+NOTICE_URL = "https://weinibuliu.github.io/Maa-Mirror/post/1.html"
+DOWNLOAD_URL = "https://weinibuliu.github.io/Maa-Mirror/post/2.html"
 
 
 def run(token: str | None = None):
@@ -17,7 +17,7 @@ def run(token: str | None = None):
         note = f.read()
 
     GH = github.Github(login_or_token=token, retry=None)
-    REPO = GH.get_repo("weinibuliu/weinibuliu.github.io")
+    REPO = GH.get_repo("weinibuliu/Maa-Mirror")
 
     labels = ["maa", "update"]
     if "beta" in ver or "alpha" in ver:
