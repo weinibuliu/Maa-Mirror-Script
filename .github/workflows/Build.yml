@@ -75,7 +75,7 @@ jobs:
             7z a -sfx MAA-${{ env.update_ver }}-win-x64.exe MAA-${{ env.update_ver }}-win-x64.zip
 
         - name: Run Upload
-          timeout-minutes: 120
+          timeout-minutes: 60
           run: |
             mv -f secret/.bypy .bypy
             mv -f .bypy /home/runner/.bypy
