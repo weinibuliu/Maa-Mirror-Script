@@ -40,7 +40,9 @@ class Upload:
                         if ".exe" not in str(r):
                             continue
                         name = name.replace(".exe", ".7z")
-                    file = ali.upload_file(r, DIR_ID[pla], name, DRIVE_ID)
+                    file = ali.upload_file(
+                        r, DIR_ID[pla], name, DRIVE_ID, check_name_mode="overwrite"
+                    )
                     file_id = file.file_id
                     status = file.status
                     if not file_id:
