@@ -18,14 +18,14 @@ BODY = """**[Github Release](https://github.com/MaaAssistantArknights/MaaAssista
 
 ## 关于我们 | About Us
 - **Maa-Mirror 与 Maa 无隶属关系，不代表 Maa 开发团队。Maa 与 Maa-Mirror 无任何关联。**。
-- Maa-Mirror 仅提供国内网盘分流，不受理 Maa 使用相关问题。如有问题，请移步 **[用户 QQ 群](https://ota.maa.plus/MaaAssistantArknights/api/qqgroup)** 。
+- Maa-Mirror 仅提供国内网盘分流，不受理 Maa 使用相关问题。如有问题，请移步 **[MAA 用户 QQ 群](https://ota.maa.plus/MaaAssistantArknights/api/qqgroup)** 。
 
 ## 注意事项 | Tips
 >[!TIP]
 - Maa-Mirror 可能会定期删除历史版本以释放可用空间。如有下载特定历史版本的需求，推荐前往 **[Github Release](https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases)** 下载。
 
 ## 问题反馈 | Feedback
-如发现**最新版本**下载地址不可用/缺失，请先查阅 **[公告]({NOTICE_URL})** 。如确认暂无相关公告，请前往 **[Maa-Mirror-Issue](https://github.com/weinibuliu/Maa-Mirror-Issue)** 提交 issue 。
+如发现**最新版本**下载地址不可用/缺失，请先查阅 **[公告]({NOTICE_URL})** 。如确认暂无相关公告，请前往 **[Maa-Mirror-Issue](https://github.com/weinibuliu/Maa-Mirror-Issue/issues)** 提交 issue 。
 >[!WARNING]
 请勿反馈 **历史版本** 缺失问题。
 """

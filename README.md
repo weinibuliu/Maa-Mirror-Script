@@ -10,3 +10,4 @@ https://github.com/weinibuliu/Maa-Mirror
 ## 鸣谢
 - **[Aligo](https://github.com/foyoux/aligo)**
 - **[bypy](https://github.com/houtianze/bypy)**
+- **[PyGithub](https://github.com/PyGithub/PyGithub)**
