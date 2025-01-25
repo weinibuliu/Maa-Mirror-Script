@@ -94,7 +94,7 @@ jobs:
           with:
             source_file: '.bypy'
             destination_repo: 'weinibuliu/Maa-Mirror-Secret'
-            destination_folder: "Maa-Mirror-Secret"
+            destination_folder: "."
             user_email: 41898282+github-actions[bot]@users.noreply.github.com
             user_name: GitHub Actions
             commit_message: "[UPDATE] ${{ env.update_ver }}"
