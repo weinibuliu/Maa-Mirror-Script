@@ -93,7 +93,7 @@ jobs:
             API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           with:
             source_file: '.bypy'
-            destination_repo: 'dmnemec/release-test'
+            destination_repo: 'weinibuliu/Maa-Mirror-Secret'
             destination_folder: "Maa-Mirror-Secret"
             user_email: 41898282+github-actions[bot]@users.noreply.github.com
             user_name: GitHub Actions
