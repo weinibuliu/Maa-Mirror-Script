@@ -7,7 +7,7 @@ from .ISSUE_BODY import BODY
 VERSION_PATH = Path(Path.cwd(), "version")
 NOTE_PATH = Path(Path.cwd(), "note.md")
 NOTICE_URL = "https://weinibuliu.github.io/Maa-Mirror/post/1.html"
-DOWNLOAD_URL = "https://weinibuliu.github.io/Maa-Mirror/post/2.html"
+DOWNLOAD_URL = "https://weinibuliu.github.io/Maa-Mirror/download.html"
 
 
 def run(token: str | None = None):

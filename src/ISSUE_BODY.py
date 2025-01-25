@@ -22,10 +22,10 @@ BODY = """**[Github Release](https://github.com/MaaAssistantArknights/MaaAssista
 
 ## 注意事项 | Tips
 >[!TIP]
-- Maa-Mirror 可能会定期删除历史版本以释放可用空间。如有下载特定历史版本的需求，推荐前往 **[Github Release](https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases)** 下载。
+>- Maa-Mirror 可能会定期删除历史版本以释放可用空间。如有下载特定历史版本的需求，推荐前往 **[Github Release](https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases)** 下载。
 
 ## 问题反馈 | Feedback
 如发现**最新版本**下载地址不可用/缺失，请先查阅 **[公告]({NOTICE_URL})** 。如确认暂无相关公告，请前往 **[Maa-Mirror-Issue](https://github.com/weinibuliu/Maa-Mirror-Issue/issues)** 提交 issue 。
 >[!WARNING]
-请勿反馈 **历史版本** 缺失问题。
+>请勿反馈 **历史版本** 缺失问题。
 """
