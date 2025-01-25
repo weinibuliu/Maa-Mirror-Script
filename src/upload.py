@@ -32,7 +32,6 @@ class Upload:
 
         for pla in platforms:
             for r in self.releases:
-                print(pla, str(r))
                 if "Debug" in str(r):
                     continue
                 if pla in str(r):

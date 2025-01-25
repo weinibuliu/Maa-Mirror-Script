@@ -39,7 +39,7 @@ jobs:
         - name: Checkout Code
           uses: actions/checkout@v4
 
-        - name: Checkout Code
+        - name: Checkout Secret
           uses: actions/checkout@v4
           with:
             repository: "weinibuliu/Maa-Mirror-Secret"
@@ -75,12 +75,13 @@ jobs:
             7z a -sfx MAA-${{ env.update_ver }}-win-x64.exe MAA-${{ env.update_ver }}-win-x64.zip
 
         - name: Run Upload
+          timeout-minutes: 120
           run: |
-            mv -r secret/.bypy .bypy
-            mv -r .bypy /home/runner/.bypy
+            mv -f secret/.bypy .bypy
+            mv -f .bypy /home/runner/.bypy
             sudo chmod 755 /home/runner/.bypy
             python index.py --upload --ali ${{ secrets.ALI_TOKEN }}
-            mv -r /home/runner/.bypy .bypy
+            mv -f /home/runner/.bypy .bypy
 
         - name: Run Issue
           run: |
