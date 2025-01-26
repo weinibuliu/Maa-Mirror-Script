@@ -7,7 +7,7 @@ from .ISSUE_BODY import BODY
 
 VERSION_PATH = Path(Path.cwd(), "version")
 NOTE_PATH = Path(Path.cwd(), "note.md")
-NOTICE_URL = "https://mmirror.top/post/1.html"
+NOTICE_URL = "https://mmirror.top/post/gong-gao.html"
 DOWNLOAD_URL = "https://mmirror.top/download.html"
 
 
