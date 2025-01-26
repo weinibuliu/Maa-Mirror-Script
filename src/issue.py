@@ -1,3 +1,4 @@
+from datetime import datetime
 from pathlib import Path
 
 import github
@@ -6,8 +7,8 @@ from .ISSUE_BODY import BODY
 
 VERSION_PATH = Path(Path.cwd(), "version")
 NOTE_PATH = Path(Path.cwd(), "note.md")
-NOTICE_URL = "https://weinibuliu.github.io/Maa-Mirror/post/1.html"
-DOWNLOAD_URL = "https://weinibuliu.github.io/Maa-Mirror/download.html"
+NOTICE_URL = "https://mmirror.top/post/1.html"
+DOWNLOAD_URL = "https://mmirror.top/download.html"
 
 
 def run(token: str | None = None):
@@ -30,4 +31,5 @@ def run(token: str | None = None):
     body = body.replace("{NOTICE_URL}", NOTICE_URL).replace(
         "{DOWNLOAD_URL}", DOWNLOAD_URL
     )
+    body = body.replace("{TIME}", str(datetime.now()))
     REPO.create_issue(title=title, body=body, labels=labels)
