@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import github
@@ -12,6 +12,9 @@ DOWNLOAD_URL = "https://mmirror.top/download.html"
 
 
 def run(token: str | None = None):
+    tz = timezone(timedelta(hours=8))
+    time = datetime.now().astimezone(tz)
+
     with open(VERSION_PATH, "r", encoding="utf-8") as f:
         ver = f.read()
     with open(NOTE_PATH, "r", encoding="utf-8") as f:
@@ -31,5 +34,5 @@ def run(token: str | None = None):
     body = body.replace("{NOTICE_URL}", NOTICE_URL).replace(
         "{DOWNLOAD_URL}", DOWNLOAD_URL
     )
-    body = body.replace("{TIME}", str(datetime.now()))
+    body = body.replace("{TIME}", str(time))
     REPO.create_issue(title=title, body=body, labels=labels)
