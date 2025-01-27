@@ -40,9 +40,24 @@ def check(token: str | None = None) -> str | None:
         return None
 
 
+def check_in_progress(token: str | None = None) -> bool:
+    GH = github.Github(login_or_token=token, retry=None)
+    REPO = GH.get_repo("weinibuliu/Maa-Mirror-Script")
+    workflows = REPO.get_workflow_runs().get_page(0)
+    workflows.pop(0)  # 排除自身
+
+    for w in workflows:
+        if w.status == "in_progress":
+            return True
+    return False
+
+
 def run(token: str | None = None):
     ver = check(token)
-    if ver:
+    in_progress = check_in_progress(token)
+    print(f"Version = {ver}")
+    print(f"in_progress = {in_progress}")
+    if ver and not in_progress:
         subprocess.run('echo "update=true" >> "$GITHUB_ENV"', shell=True)
         print("env.update = true")
         subprocess.run(f'echo "update_ver={ver}" >> "$GITHUB_ENV"', shell=True)
