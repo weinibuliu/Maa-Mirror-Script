@@ -2,7 +2,11 @@ name: Check_Login
 
 on:
     workflow_call:
-
+      secrets:
+          API_TOKEN_GITHUB:
+            required: true
+          ALI_TOKEN:
+            required: true
     workflow_dispatch:
 
 jobs:

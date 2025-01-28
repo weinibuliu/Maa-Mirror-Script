@@ -16,10 +16,16 @@ jobs:
 
   Check_Login:
     uses: ./.github/workflows/CheckLogin.yml
+    secrets:
+      API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      ALI_TOKEN: ${{ secrets.ALI_TOKEN }}
 
   Update:
     needs: [Check_Update,Check_Login]
     if: ${{ needs.Check_Update.outputs.ver }} != ""
     uses: ./.github/workflows/Update.yml
+    secrets:
+      API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      ALI_TOKEN: ${{ secrets.ALI_TOKEN }}
     with:
       ver: ${{ needs.Check_Update.outputs.ver }}
