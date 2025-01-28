@@ -26,4 +26,5 @@ jobs:
             python index.py --check --token ${{ secrets.GITHUB_TOKEN }}
 
       outputs:
+        updatable: ${{ env.updatable }}
         ver: ${{ env.ver }}

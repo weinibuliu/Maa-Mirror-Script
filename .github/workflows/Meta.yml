@@ -22,7 +22,7 @@ jobs:
 
   Update:
     needs: [Check_Update,Check_Login]
-    if: ${{ needs.Check_Update.outputs.ver }}
+    if: ${{ needs.Check_Update.outputs.updatable =='true' }}
     uses: ./.github/workflows/Update.yml
     secrets:
       API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
