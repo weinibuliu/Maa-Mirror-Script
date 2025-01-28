@@ -1,4 +1,3 @@
-import contextlib
 import logging
 import os
 
@@ -22,7 +21,7 @@ def ali(token: str | None = None) -> bool:
 
 def baidu() -> bool:
     try:
-        by = bypy.ByPy(retry=1, timeout=10)
+        by = bypy.ByPy()
         by.info()
     except:
         return False
@@ -32,9 +31,8 @@ def baidu() -> bool:
 def run(ali_token: str | None = None):
     print("Start: Check Login Status")
 
-    with contextlib.redirect_stdout(os.devnull):
-        ali_status = ali(ali_token)
-        baidu_status = baidu()
+    ali_status = ali(ali_token)
+    baidu_status = baidu()
 
     if ali_status and baidu_status:
         print("Login Status is all right")

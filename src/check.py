@@ -58,5 +58,5 @@ def run(token: str | None = None):
     print(f"Update Version = {ver}")
     print(f"in_progress = {in_progress}")
     if ver and not in_progress:
-        subprocess.run(f'echo "update_ver={ver}" >> "$GITHUB_ENV"', shell=True)
-        print(f"env.update_ver = {ver}")
+        subprocess.run(f'echo "ver={ver}" >> "$GITHUB_ENV"', shell=True)
+        print(f"env.ver = {ver}")

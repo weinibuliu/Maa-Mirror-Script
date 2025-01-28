@@ -39,15 +39,3 @@ jobs:
             sudo chmod 755 /home/runner/.bypy
             python index.py --check_login --ali ${{ secrets.ALI_TOKEN }}
             mv -f /home/runner/.bypy .bypy
-
-        - name: Commit Secret
-          uses: dmnemec/copy_file_to_another_repo_action@main
-          env:
-            API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-          with:
-            source_file: '.bypy'
-            destination_repo: 'weinibuliu/Maa-Mirror-Secret'
-            destination_folder: "."
-            user_email: 41898282+github-actions[bot]@users.noreply.github.com
-            user_name: GitHub Actions
-            commit_message: "[CHECK] ${{ github.run_id }}"

@@ -26,4 +26,4 @@ jobs:
             python index.py --check --token ${{ secrets.GITHUB_TOKEN }}
 
       outputs:
-        ver: ${{ env.update_ver }}
+        ver: ${{ env.ver }}

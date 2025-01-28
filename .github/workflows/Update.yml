@@ -33,7 +33,7 @@ jobs:
           uses: robinraju/release-downloader@v1
           with:
             repository: "MaaAssistantArknights/MaaAssistantArknights"
-            tag: ${{ needs.Build.outputs.ver }}
+            tag: ${{ inputs.ver }}
             out-file-path: "."
             fileName: "*"
             zipBall: true
@@ -49,13 +49,9 @@ jobs:
             pip install -r requirements.txt
             sudo apt-get install p7zip-full
 
-        - name: Run Check
-          run: |
-            python index.py --check --token ${{ secrets.GITHUB_TOKEN }}
-
         - name: Zip File
           run: |
-            7z a -sfx MAA-${{ env.update_ver }}-win-x64.exe MAA-${{ env.update_ver }}-win-x64.zip
+            7z a -sfx MAA-${{ inputs.ver }}-win-x64.exe MAA-${{ inputs.ver }}-win-x64.zip
 
         - name: Run Upload
           timeout-minutes: 60
@@ -70,24 +66,12 @@ jobs:
           run: |
             python index.py --issue --token ${{ secrets.API_TOKEN_GITHUB }}
 
-        - name: Commit Secret
-          uses: dmnemec/copy_file_to_another_repo_action@main
-          env:
-            API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-          with:
-            source_file: '.bypy'
-            destination_repo: 'weinibuliu/Maa-Mirror-Secret'
-            destination_folder: "."
-            user_email: 41898282+github-actions[bot]@users.noreply.github.com
-            user_name: GitHub Actions
-            commit_message: "[UPDATE] ${{ env.update_ver }}"
-
         - name: Commit Version
           uses: EndBug/add-and-commit@v9
           with:
             add: |
               version
-            message: "[UPDATE] ${{ env.update_ver }}"
+            message: "[UPDATE] ${{ inputs.ver }}"
             default_author: github_actions
             committer_name: GitHub Actions
             committer_email: 41898282+github-actions[bot]@users.noreply.github.com
