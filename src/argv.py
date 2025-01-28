@@ -10,6 +10,7 @@ class Argparser:
 
     def _add_argument(self):
         self.parser.add_argument("--check", action="store_true", default=False)
+        self.parser.add_argument("--check_login", action="store_true", default=False)
         self.parser.add_argument("--issue", action="store_true", default=False)
         self.parser.add_argument("--upload", action="store_true", default=False)
         self.parser.add_argument("--init_upload", action="store_true", default=False)

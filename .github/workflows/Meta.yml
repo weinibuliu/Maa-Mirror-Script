@@ -1,0 +1,25 @@
+name: Meta
+
+on:
+    workflow_dispatch:
+
+    push:
+      branches:
+      - "**"
+
+    schedule:
+      - cron: "0/20 * * * *" # Runs every 20 minutes
+
+jobs:
+  Check_Update:
+    uses: ./.github/workflows/CheckUpdate.yml
+
+  Check_Login:
+    uses: ./.github/workflows/CheckLogin.yml
+
+  Update:
+    needs: [Check_Update,Check_Login]
+    if: ${{ needs.Check_Update.outputs.ver }} != ""
+    uses: ./.github/workflows/Update.yml
+    with:
+      ver: ${{ needs.Check_Update.outputs.ver }}

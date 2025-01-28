@@ -1,11 +1,14 @@
 from src.argv import Argparser
-from src import check, issue, upload
+from src import check, check_login, issue, upload
 
 args = Argparser().args
 
 token: str = args.token
 
-if args.check:
+
+if args.check_login:
+    check_login.run()
+elif args.check:
     check.run(token)
 elif args.upload:
     UP = upload.Upload()
