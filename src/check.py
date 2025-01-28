@@ -5,6 +5,7 @@ import github
 import github.GitReleaseAsset
 
 VERSION_PATH = Path(Path.cwd(), "version")
+RELEASE_TIME_PATH = Path(Path.cwd(), "release_time")
 NOTE_PATH = Path(Path.cwd(), "note.md")
 
 
@@ -24,6 +25,7 @@ def check(token: str | None = None) -> str | None:
     curent_ver = get_current_ver()
 
     target_ver = RELEASE.tag_name
+    release_time = RELEASE.created_at.timestamp()
     note = (
         RELEASE.body.replace(f"## {target_ver}\n\n", "")
         .replace(f"## {target_ver}\n", "")
@@ -33,6 +35,8 @@ def check(token: str | None = None) -> str | None:
     if target_ver != curent_ver:
         with open(VERSION_PATH, "w", encoding="utf-8") as f:
             f.write(target_ver)
+        with open(RELEASE_TIME_PATH, "w", encoding="utf-8") as f:
+            f.write(str(release_time))
         with open(NOTE_PATH, "w", encoding="utf-8") as f:
             f.write(note)
         return target_ver

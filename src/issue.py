@@ -6,6 +6,7 @@ import github
 from .ISSUE_BODY import BODY
 
 VERSION_PATH = Path(Path.cwd(), "version")
+RELEASE_TIME_PATH = Path(Path.cwd(), "release_time")
 NOTE_PATH = Path(Path.cwd(), "note.md")
 NOTICE_URL = "https://mmirror.top/post/gong-gao.html"
 DOWNLOAD_URL = "https://mmirror.top/download.html"
@@ -17,6 +18,9 @@ def run(token: str | None = None):
 
     with open(VERSION_PATH, "r", encoding="utf-8") as f:
         ver = f.read()
+    with open(RELEASE_TIME_PATH, "r", encoding="utf-8") as f:
+        ts = f.read()
+        release_time = datetime.fromtimestamp(ts, tz)
     with open(NOTE_PATH, "r", encoding="utf-8") as f:
         note = f.read()
 
@@ -34,5 +38,7 @@ def run(token: str | None = None):
     body = body.replace("{NOTICE_URL}", NOTICE_URL).replace(
         "{DOWNLOAD_URL}", DOWNLOAD_URL
     )
-    body = body.replace("{TIME}", str(time))
+    body = body.replace("{TIME}", str(time)).replace(
+        "{RELEASE_TIME}", str(release_time)
+    )
     REPO.create_issue(title=title, body=body, labels=labels)

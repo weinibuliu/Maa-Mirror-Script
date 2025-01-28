@@ -29,5 +29,6 @@ BODY = """## 更新日志 | Release Note
 > [!WARNING]
 > 请勿反馈 **历史版本** 缺失问题。
 
+> Release 更新时间: {RELEASE_TIME}
 > 更新时间: {TIME}
 """
