@@ -55,7 +55,7 @@ def check_in_progress(token: str | None = None) -> bool:
 def run(token: str | None = None):
     ver = check(token)
     in_progress = check_in_progress(token)
-    print(f"Version = {ver}")
+    print(f"Update Version = {ver}")
     print(f"in_progress = {in_progress}")
     if ver and not in_progress:
         subprocess.run('echo "update=true" >> "$GITHUB_ENV"', shell=True)
