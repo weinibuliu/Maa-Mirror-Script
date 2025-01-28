@@ -22,9 +22,12 @@ jobs:
             pip install -r requirements.txt
 
         - name: Run check
+          id: run
           run: |
             python index.py --check --token ${{ secrets.GITHUB_TOKEN }}
+            echo "updatable=${{ env.updatable }}" >> "$GITHUB_OUTPUT"
+            echo "ver=${{ env.ver }}" >> "$GITHUB_OUTPUT"
 
       outputs:
-        updatable: ${{ env.updatable }}
-        ver: ${{ env.ver }}
+        updatable: ${{ steps.run.outputs.updatable }}
+        ver: ${{ steps.run.outputs.ver }}
