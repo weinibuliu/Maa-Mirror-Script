@@ -7,7 +7,7 @@ token: str = args.token
 
 
 if args.check_login:
-    check_login.run()
+    check_login.run(args.ali)
 elif args.check:
     check.run(token)
 elif args.upload:
