@@ -1,5 +1,5 @@
+import contextlib
 import logging
-import os
 
 import aligo
 import bypy
@@ -31,8 +31,9 @@ def baidu() -> bool:
 def run(ali_token: str | None = None):
     print("Start: Check Login Status")
 
-    ali_status = ali(ali_token)
-    baidu_status = baidu()
+    with open("devnull", "w") as f, contextlib.redirect_stdout(f):
+        ali_status = ali(ali_token)
+        baidu_status = baidu()
 
     if ali_status and baidu_status:
         print("Login Status is all right")

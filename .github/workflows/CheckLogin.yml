@@ -33,6 +33,7 @@ jobs:
             pip install -r requirements.txt
 
         - name: Run Check
+          timeout-minutes: 5
           run: |
             mv -f secret/.bypy .bypy
             mv -f .bypy /home/runner/.bypy
