@@ -1,17 +1,12 @@
-name: Update
+name: Check
 
 on:
     workflow_call:
-        secrets:
+      secrets:
             API_TOKEN_GITHUB:
               required: true
             ALI_TOKEN:
               required: true
-
-        inputs:
-          ver:
-            type: string
-            required: true
 
     workflow_dispatch:
 
@@ -22,23 +17,6 @@ jobs:
         - name: Checkout Code
           uses: actions/checkout@v4
 
-        - name: Checkout Secret
-          uses: actions/checkout@v4
-          with:
-            repository: "weinibuliu/Maa-Mirror-Secret"
-            token: ${{ secrets.API_TOKEN_GITHUB }}
-            path: secret
-
-        - name: Download Release
-          uses: robinraju/release-downloader@v1
-          with:
-            repository: "MaaAssistantArknights/MaaAssistantArknights"
-            tag: ${{ inputs.ver }}
-            out-file-path: "."
-            fileName: "*"
-            zipBall: true
-            token: ${{ secrets.GITHUB_TOKEN }}
-
         - name: Setup Python
           uses: actions/setup-python@v5
           with:
@@ -47,13 +25,38 @@ jobs:
         - name: Install Deps
           run: |
             pip install -r requirements.txt
-            sudo apt-get install p7zip-full
+
+        - name: Run check
+          run: |
+            python index.py --check --token ${{ secrets.GITHUB_TOKEN }}
+
+        - name: Checkout Secret
+          if: env.updatable == 'true'
+          uses: actions/checkout@v4
+          with:
+            repository: "weinibuliu/Maa-Mirror-Secret"
+            token: ${{ secrets.API_TOKEN_GITHUB }}
+            path: secret
+
+        - name: Download Release
+          if: env.updatable == 'true'
+          uses: robinraju/release-downloader@v1
+          with:
+            repository: "MaaAssistantArknights/MaaAssistantArknights"
+            tag: ${{ env.ver }}
+            out-file-path: "."
+            fileName: "*"
+            zipBall: true
+            token: ${{ secrets.GITHUB_TOKEN }}
 
         - name: Zip File
+          if: env.updatable == 'true'
           run: |
-            7z a -sfx MAA-${{ inputs.ver }}-win-x64.exe MAA-${{ inputs.ver }}-win-x64.zip
+            sudo apt-get install p7zip-full
+            7z a -sfx MAA-${{ env.ver }}-win-x64.exe MAA-${{ env.ver }}-win-x64.zip
 
         - name: Run Upload
+          if: env.updatable == 'true'
           timeout-minutes: 60
           run: |
             mv -f secret/.bypy .bypy
@@ -63,15 +66,17 @@ jobs:
             mv -f /home/runner/.bypy .bypy
 
         - name: Run Issue
+          if: env.updatable == 'true'
           run: |
             python index.py --issue --token ${{ secrets.API_TOKEN_GITHUB }}
 
         - name: Commit Version
+          if: env.updatable == 'true'
           uses: EndBug/add-and-commit@v9
           with:
             add: |
               version
-            message: "[UPDATE] ${{ inputs.ver }}"
+            message: "[UPDATE] ${{ env.ver }}"
             default_author: github_actions
             committer_name: GitHub Actions
             committer_email: 41898282+github-actions[bot]@users.noreply.github.com

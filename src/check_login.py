@@ -21,7 +21,10 @@ def ali(token: str | None = None) -> bool:
 
 def baidu() -> bool:
     try:
-        by = bypy.ByPy()
+        by = bypy.ByPy(
+            retry=2,
+            timeout=10,
+        )
         by.info()
     except:
         return False

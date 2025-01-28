@@ -11,21 +11,14 @@ on:
       - cron: "0/20 * * * *" # Runs every 20 minutes
 
 jobs:
-  Check_Update:
-    uses: ./.github/workflows/CheckUpdate.yml
-
-  Check_Login:
-    uses: ./.github/workflows/CheckLogin.yml
-    secrets:
-      API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-      ALI_TOKEN: ${{ secrets.ALI_TOKEN }}
-
   Update:
-    needs: [Check_Update,Check_Login]
-    if: ${{ needs.Check_Update.outputs.updatable =='true' }}
     uses: ./.github/workflows/Update.yml
     secrets:
       API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       ALI_TOKEN: ${{ secrets.ALI_TOKEN }}
-    with:
-      ver: ${{ needs.Check_Update.outputs.ver }}
+
+  Login:
+    uses: ./.github/workflows/Login.yml
+    secrets:
+      API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      ALI_TOKEN: ${{ secrets.ALI_TOKEN }}
