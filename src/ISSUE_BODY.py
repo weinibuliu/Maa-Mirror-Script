@@ -25,10 +25,11 @@ BODY = """## 更新日志 | Release Note
 > - Maa-Mirror 可能会不定期删除历史版本以释放可用空间。如有下载特定历史版本的需求，推荐前往 **[Github Release](https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases)** 下载。
 
 ## 问题反馈 | Feedback
-如发现**最新版本**下载地址不可用/缺失，请先查阅 **[公告]({NOTICE_URL})** 。如确认无相关公告，请前往 **[Maa-Mirror-Issue](https://github.com/weinibuliu/Maa-Mirror-Issue/issues)** 创建 issue 。
+如确认无相关 **[公告]({NOTICE_URL}]，请前往 **[Maa-Mirror-Issue](https://github.com/weinibuliu/Maa-Mirror-Issue/issues)** 创建 issue 。
 > [!WARNING]
 > 请勿反馈 **历史版本** 缺失问题。
 
-> Release 更新时间: {RELEASE_TIME}
-> 更新时间: {TIME}
+> MAA 更新时间 | 镜像更新时间
+> --- | ---
+> {RELEASE_TIME} | {TIME}
 """
