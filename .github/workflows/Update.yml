@@ -2,13 +2,15 @@ name: Check
 
 on:
     workflow_call:
-      secrets:
-            API_TOKEN_GITHUB:
-              required: true
-            ALI_TOKEN:
-              required: true
 
     workflow_dispatch:
+
+    push:
+      branches:
+      - "**"
+
+    schedule:
+      - cron: "0/20 * * * *" # Runs every 20 minutes
 
 jobs:
     run:
