@@ -1,16 +1,4 @@
-BODY = """## 更新日志 | Release Note
-<details>
-
-<summary>点击查看</summary>
-
-{NOTE}
-
-</details>
-
-## 下载地址 | Download
-- **[Maa-Mirror]({DOWNLOAD_URL})**
-- [Github](https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/{VERSION})
-
+INFOS = """
 ## 关于 MAA | About MAA
 - **[官网](https://maa.plus)**
 - **[Github 仓库](https://github.com/MaaAssistantArknights/MaaAssistantArknights)**
@@ -28,8 +16,39 @@ BODY = """## 更新日志 | Release Note
 如确认无相关 **[公告]({NOTICE_URL})** ，请前往 **[Maa-Mirror-Issue](https://github.com/weinibuliu/Maa-Mirror-Issue/issues)** 创建 issue 。
 > [!WARNING]
 > 请勿反馈 **历史版本** 缺失问题。
+"""
 
+BODY = (
+    """## 更新日志 | Release Note
+<details>
+
+<summary>点击查看</summary>
+
+{NOTE}
+
+</details>
+
+## 下载地址 | Download
 > MAA 更新时间 | 镜像更新时间
 > --- | ---
 > {RELEASE_TIME} | {TIME}
+
+- **[Maa-Mirror]({DOWNLOAD_URL})**
+- [Github](https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/{VERSION})
 """
+    + INFOS
+)
+
+
+RESOURCE = (
+    """## 资源信息
+- 资源版本: {RES_VER}
+- 资源日期: {RES_TIME}
+
+## 下载地址 | Download
+> 镜像更新时间: {TIME}
+
+- **[Maa-Mirror]({DOWNLOAD_URL})**
+"""
+    + INFOS
+)

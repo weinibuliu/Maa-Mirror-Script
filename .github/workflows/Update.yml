@@ -19,6 +19,12 @@ jobs:
         - name: Checkout Code
           uses: actions/checkout@v4
 
+        - name: Checkout Resource
+          uses: actions/checkout@v4
+          with:
+            repository: MaaAssistantArknights/MaaResource
+            path: res
+
         - name: Setup Python
           uses: actions/setup-python@v5
           with:
@@ -26,22 +32,32 @@ jobs:
 
         - name: Install Deps
           run: |
+            sudo apt-get install p7zip-full
+            sudo apt install zip
             pip install -r requirements.txt
 
         - name: Run check
           run: |
             python index.py --check --token ${{ secrets.GITHUB_TOKEN }}
+            python index.py --check_res --token ${{ secrets.GITHUB_TOKEN }}
 
         - name: Checkout Secret
-          if: env.updatable == 'true'
+          if: env.maa == 'true' || env.res == 'true'
           uses: actions/checkout@v4
           with:
-            repository: "weinibuliu/Maa-Mirror-Secret"
+            repository: weinibuliu/Maa-Mirror-Secret
             token: ${{ secrets.API_TOKEN_GITHUB }}
             path: secret
 
+        - name: Move Secret
+          if: env.maa == 'true' || env.res == 'true'
+          run: |
+            mv -f secret/.bypy .bypy
+            mv -f .bypy /home/runner/.bypy
+            sudo chmod 755 /home/runner/.bypy
+
         - name: Download Release
-          if: env.updatable == 'true'
+          if: env.maa == 'true'
           uses: robinraju/release-downloader@v1
           with:
             repository: "MaaAssistantArknights/MaaAssistantArknights"
@@ -51,34 +67,60 @@ jobs:
             zipBall: true
             token: ${{ secrets.GITHUB_TOKEN }}
 
-        - name: Zip File
-          if: env.updatable == 'true'
+        - name: Zip File (MAA)
+          if: env.maa == 'true'
           run: |
-            sudo apt-get install p7zip-full
-            7z a -sfx MAA-${{ env.ver }}-win-x64.exe MAA-${{ env.ver }}-win-x64.zip
+            7z a -sfx MAA-${{ env.ver }}-win-x64.7z MAA-${{ env.ver }}-win-x64.zip
 
-        - name: Run Upload
-          if: env.updatable == 'true'
+        - name: Zip File (Resource)
+          if: env.res == 'true'
+          run: |
+            cd res/resource
+            cp version.json ../..
+            7z a -sfx Resource.7z . && mv Resource.7z ../..
+            zip -r Resource.zip . &&  mv Resource.zip ../..
+
+        - name: Run Upload (MAA)
+          if: env.maa == 'true'
           timeout-minutes: 60
           run: |
-            mv -f secret/.bypy .bypy
-            mv -f .bypy /home/runner/.bypy
-            sudo chmod 755 /home/runner/.bypy
             python index.py --upload --ali ${{ secrets.ALI_TOKEN }}
-            mv -f /home/runner/.bypy .bypy
 
-        - name: Run Issue
-          if: env.updatable == 'true'
+        - name: Run Upload (Resource)
+          if: env.res == 'true'
+          timeout-minutes: 10
+          run: |
+            ls
+            python index.py --upload_res --ali ${{ secrets.ALI_TOKEN }}
+
+        - name: Run Issue (MAA)
+          if: env.maa == 'true'
           run: |
             python index.py --issue --token ${{ secrets.API_TOKEN_GITHUB }}
 
-        - name: Commit Version
-          if: env.updatable == 'true'
+        - name: Run Issue (Resource)
+          if: env.res == 'true'
+          run: |
+            python index.py --issue_res --token ${{ secrets.API_TOKEN_GITHUB }}
+
+        - name: Commit Version (MAA)
+          if: env.maa == 'true'
           uses: EndBug/add-and-commit@v9
           with:
             add: |
               version
-            message: "[UPDATE] ${{ env.ver }}"
+            message: "[MAA UPDATE] ${{ env.ver }}"
+            default_author: github_actions
+            committer_name: GitHub Actions
+            committer_email: 41898282+github-actions[bot]@users.noreply.github.com
+
+        - name: Commit Version (Resource)
+          if: env.res == 'true'
+          uses: EndBug/add-and-commit@v9
+          with:
+            add: |
+              version.json
+            message: "[RES UPDATE] ${{ env.ver }}"
             default_author: github_actions
             committer_name: GitHub Actions
             committer_email: 41898282+github-actions[bot]@users.noreply.github.com
