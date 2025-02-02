@@ -20,7 +20,7 @@ def get_current_ver() -> str | None:
 def check(token: str | None = None) -> str | None:
     GH = github.Github(login_or_token=token, retry=None)
     REPO = GH.get_repo("MaaAssistantArknights/MaaAssistantArknights")
-    RELEASE = REPO.get_latest_release()
+    RELEASE = REPO.get_releases().get_page(0)[0]
 
     curent_ver = get_current_ver()
 
