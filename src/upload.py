@@ -28,7 +28,11 @@ class Upload:
 
         file_ids = []
 
-        ali = aligo.Aligo(refresh_token=token, requests_timeout=5, re_login=False)
+        ali = aligo.Aligo(
+            refresh_token=token,
+            requests_timeout=5,
+            re_login=False,
+        )
 
         for pla in platforms:
             for r in self.releases:

@@ -1,6 +1,3 @@
-import contextlib
-import logging
-
 import aligo
 import bypy
 
@@ -11,7 +8,6 @@ def ali(token: str | None = None) -> bool:
             refresh_token=token,
             requests_timeout=5,
             re_login=False,
-            level=logging.CRITICAL + 1,
         )
         a.get_default_drive()
     except:
@@ -34,9 +30,8 @@ def baidu() -> bool:
 def run(ali_token: str | None = None):
     print("Start: Check Login Status")
 
-    with open("devnull", "w") as f, contextlib.redirect_stdout(f):
-        ali_status = ali(ali_token)
-        baidu_status = baidu()
+    ali_status = ali(ali_token)
+    baidu_status = baidu()
 
     if ali_status and baidu_status:
         print("Login Status is all right")
