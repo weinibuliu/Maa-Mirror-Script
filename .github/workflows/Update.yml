@@ -75,10 +75,10 @@ jobs:
         - name: Zip File (Resource)
           if: env.res == 'true'
           run: |
-            cd res/resource
-            cp version.json ../..
-            7z a -sfx Resource.7z . && mv Resource.7z ../..
-            zip -r Resource.zip . &&  mv Resource.zip ../..
+            cd res
+            cp resource/version.json ..
+            7z a -sfx Resource.7z cache resource && mv Resource.7z ..
+            zip -r Resource.zip cache resource &&  mv Resource.zip ..
 
         - name: Run Upload (MAA)
           if: env.maa == 'true'
