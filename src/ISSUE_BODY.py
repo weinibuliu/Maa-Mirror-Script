@@ -46,6 +46,9 @@ RESOURCE = (
 - 资源日期: {RES_TIME}
 
 ## 下载地址 | Download
+>[!IMPORTANT]
+> Resource.zip(.7z) 将始终保持最新。Maa-Mirror 不会提供其历史版本。
+
 > 镜像更新时间: {TIME}
 
 - **[Maa-Mirror]({DOWNLOAD_URL})**
