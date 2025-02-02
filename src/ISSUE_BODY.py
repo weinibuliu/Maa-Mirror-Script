@@ -13,7 +13,9 @@ INFOS = """
 > - Maa-Mirror 可能会不定期删除历史版本以释放可用空间。如有下载特定历史版本的需求，推荐前往 **[Github Release](https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases)** 下载。
 
 ## 问题反馈 | Feedback
-如确认无相关 **[公告]({NOTICE_URL})** ，请前往 **[Maa-Mirror-Issue](https://github.com/MaaMirror/Maa-Mirror-Issue/issues)** 创建 issue 。
+如确认无相关 **[公告]({NOTICE_URL})** ，请通过下列方式联系我们：
+- 前往 **[Maa-Mirror-Issue](https://github.com/MaaMirror/Maa-Mirror-Issue/issues)** 创建 issue 。
+- 发送邮件至 <a href="weinibuliu@outlook.com">weinibuliu@outlook.com</a>
 > [!WARNING]
 > 请勿反馈 **历史版本** 缺失问题。
 """
@@ -46,6 +48,9 @@ RESOURCE = (
 - 资源日期: {RES_TIME}
 
 ## 下载地址 | Download
+>[!IMPORTANT]
+> Resource.zip(.7z) 将始终保持最新。Maa-Mirror 不会提供其历史版本。
+
 > 镜像更新时间: {TIME}
 
 - **[Maa-Mirror]({DOWNLOAD_URL})**
