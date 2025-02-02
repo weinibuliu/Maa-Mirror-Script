@@ -25,7 +25,7 @@ def check(token: str | None = None) -> str | None:
     curent_ver = get_current_ver()
 
     target_ver = RELEASE.tag_name
-    release_time = RELEASE.created_at.timestamp()
+    release_time = int(RELEASE.created_at.timestamp())
     note = (
         RELEASE.body.replace(f"## {target_ver}\n\n", "")
         .replace(f"## {target_ver}\n", "")

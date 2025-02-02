@@ -14,7 +14,8 @@ DOWNLOAD_URL = "https://mmirror.top/download.html"
 
 def run(token: str | None = None):
     tz = timezone(timedelta(hours=8))
-    time = datetime.now().astimezone(tz)
+    _time = datetime.now().timestamp()
+    time = datetime.fromtimestamp(int(_time)).astimezone(tz)
 
     with open(VERSION_PATH, "r", encoding="utf-8") as f:
         ver = f.read()
