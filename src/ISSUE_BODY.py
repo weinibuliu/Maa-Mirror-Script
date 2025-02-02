@@ -41,7 +41,7 @@ BODY = (
 
 
 RESOURCE = (
-    """## 资源信息
+    """## 资源信息 | Resource Info
 - 资源版本: {RES_VER}
 - 资源日期: {RES_TIME}
 

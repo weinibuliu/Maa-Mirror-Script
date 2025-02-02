@@ -63,6 +63,9 @@ class Issue:
             time = datetime.strptime(time, "%Y-%m-%d %H:%M:%S.%f").astimezone(tz)
 
         body = RESOURCE.replace("{RES_VER}", res_ver).replace("{RES_TIME}", str(time))
+        body = body.replace("{NOTICE_URL}", NOTICE_URL).replace(
+            "{DOWNLOAD_URL}", DOWNLOAD_URL
+        )
         body = body.replace("{TIME}", str(update_time))
 
         self.REPO.get_issue(27).edit(body=body)
