@@ -49,11 +49,19 @@ RESOURCE = (
 
 ## 下载地址 | Download
 >[!IMPORTANT]
-> Resource.zip(.7z) 将始终保持最新。Maa-Mirror 不会提供其历史版本。
+> 资源分流将保持最新，Maa-Mirror 不会提供其历史版本。
 
 > 镜像更新时间: {TIME}
 
 - **[Maa-Mirror]({DOWNLOAD_URL})**
+
+## 使用方式 | How to Use
+- 解压 `Resource.zip(.7z)` 得到 `cache` 与 `resource` 两个文件夹。
+- 将上述文件夹**覆盖**MAA 安装目录下的**同名文件夹**。
+- 重启 MAA 。
+
+> - **视频教程: https://www.bilibili.com/video/BV13w4m1k7j3**
+> - Github: https://github.com/MaaAssistantArknights/MaaAssistantArknights/issues/10033
 """
     + INFOS
 )
