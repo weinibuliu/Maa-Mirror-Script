@@ -17,7 +17,7 @@ DOWNLOAD_URL = "https://mmirror.top/download.html"
 class Issue:
     def __init__(self, token: str):
         GH = github.Github(login_or_token=token, retry=None)
-        self.REPO = GH.get_repo("weinibuliu/Maa-Mirror")
+        self.REPO = GH.get_repo("MaaMirror/Maa-Mirror")
 
     def run(self):
         tz = timezone(timedelta(hours=8))
