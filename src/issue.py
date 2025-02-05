@@ -13,7 +13,6 @@ NOTE_PATH = Path(Path.cwd(), "note.md")
 NOTICE_URL = "https://mmirror.top/post/gong-gao.html"
 DOWNLOAD_URL = "https://mmirror.top/download.html"
 
-
 class Issue:
     def __init__(self, token: str):
         GH = github.Github(login_or_token=token, retry=None)
@@ -40,7 +39,7 @@ class Issue:
 
         title = ver
         body = (
-            BODY.replace("{VERSION}", ver).replace("{NOTE}", note).replace("@", "By ")
+            BODY.replace("{VERSION}", ver).replace("{NOTE}", note)
         )
         body = body.replace("{NOTICE_URL}", NOTICE_URL).replace(
             "{DOWNLOAD_URL}", DOWNLOAD_URL

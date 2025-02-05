@@ -46,7 +46,7 @@ class MAA:
         note = (
             RELEASE.body.replace(f"## {target_ver}\n\n", "")
             .replace(f"## {target_ver}\n", "")
-            .replace("@", " By ")
+            .replace("@", "`@`")
         )
 
         if target_ver != curent_ver:
