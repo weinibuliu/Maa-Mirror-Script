@@ -12,7 +12,7 @@ RESOURCE_TIME_PATH = Path(Path.cwd(), "res_time")
 NOTE_PATH = Path(Path.cwd(), "note.md")
 
 
-def check_in_progress(token) -> bool:
+def check_in_progress(token: str) -> bool:
     _GH = github.Github(login_or_token=token, retry=None)
     _REPO = _GH.get_repo("weinibuliu/Maa-Mirror-Script")
     workflows = _REPO.get_workflow_runs().get_page(0)
@@ -64,9 +64,13 @@ class MAA:
     def run(self):
         ver = self.check()
         in_progress = check_in_progress(self.token)
-        print(f"Update Version = {ver}")
-        print(f"in_progress = {in_progress}")
-        if ver and not in_progress:
+        print(f"Maa Version = {ver}")
+
+        if in_progress:
+            print("Cancel because a workflow is in progress.")
+            return
+
+        if ver:
             subprocess.run('echo "maa=true" >> "$GITHUB_ENV"', shell=True)
             subprocess.run(f'echo "ver={ver}" >> "$GITHUB_ENV"', shell=True)
             print(f"env.ver = {ver}")
@@ -103,9 +107,13 @@ class Resource:
     def run(self):
         ver = self.check()
         in_progress = check_in_progress(self.token)
-        print(f"Update Version = {ver}")
-        print(f"in_progress = {in_progress}")
-        if ver and not in_progress:
+        print(f"Resource Version = {ver}")
+
+        if in_progress:
+            print("Cancel because a workflow is in progress.")
+            return
+
+        if ver:
             subprocess.run('echo "res=true" >> "$GITHUB_ENV"', shell=True)
             subprocess.run(f'echo "res_ver={ver}" >> "$GITHUB_ENV"', shell=True)
             print(f"env.res_ver = {ver}")
