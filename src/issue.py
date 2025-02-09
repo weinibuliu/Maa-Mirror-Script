@@ -12,6 +12,8 @@ RELEASE_TIME_PATH = Path(Path.cwd(), "release_time")
 NOTE_PATH = Path(Path.cwd(), "note.md")
 NOTICE_URL = "https://mmirror.top/post/gong-gao.html"
 DOWNLOAD_URL = "https://mmirror.top/download.html"
+RES_ISSUE_ID = 27
+
 
 class Issue:
     def __init__(self, token: str):
@@ -38,9 +40,7 @@ class Issue:
             labels.append("stable")
 
         title = ver
-        body = (
-            BODY.replace("{VERSION}", ver).replace("{NOTE}", note)
-        )
+        body = BODY.replace("{VERSION}", ver).replace("{NOTE}", note)
         body = body.replace("{NOTICE_URL}", NOTICE_URL).replace(
             "{DOWNLOAD_URL}", DOWNLOAD_URL
         )
@@ -67,4 +67,4 @@ class Issue:
         )
         body = body.replace("{TIME}", str(update_time))
 
-        self.REPO.get_issue(27).edit(body=body)
+        self.REPO.get_issue(RES_ISSUE_ID).edit(body=body)
