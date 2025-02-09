@@ -66,7 +66,7 @@ class MAA:
         print(f"Update Version = {ver}")
         print(f"in_progress = {in_progress}")
         if ver and not in_progress:
-            subprocess.run(f'echo "maa=true" >> "$GITHUB_ENV"', shell=True)
+            subprocess.run('echo "maa=true" >> "$GITHUB_ENV"', shell=True)
             subprocess.run(f'echo "ver={ver}" >> "$GITHUB_ENV"', shell=True)
             print(f"env.ver = {ver}")
 
@@ -116,4 +116,6 @@ class Resource:
         print(f"Update Version = {ver}")
         print(f"in_progress = {in_progress}")
         if ver and not in_progress:
-            subprocess.run(f'echo "res=true" >> "$GITHUB_ENV"', shell=True)
+            subprocess.run('echo "res=true" >> "$GITHUB_ENV"', shell=True)
+            subprocess.run(f'echo "res_ver={ver}" >> "$GITHUB_ENV"', shell=True)
+            print(f"env.res_ver = {ver}")
