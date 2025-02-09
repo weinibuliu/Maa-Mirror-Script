@@ -41,12 +41,10 @@ class Issue:
 
         title = ver
         body = BODY.replace("{VERSION}", ver).replace("{NOTE}", note)
-        body = body.replace("{NOTICE_URL}", NOTICE_URL).replace(
-            "{DOWNLOAD_URL}", DOWNLOAD_URL
-        )
-        body = body.replace("{TIME}", str(time)).replace(
-            "{RELEASE_TIME}", str(release_time)
-        )
+        body = body.replace("{NOTICE_URL}", NOTICE_URL)
+        body = body.replace("{DOWNLOAD_URL}", DOWNLOAD_URL)
+        body = body.replace("{TIME}", str(time))
+        body = body.replace("{RELEASE_TIME}", str(release_time))
         self.REPO.create_issue(title=title, body=body, labels=labels)
 
     def update_res(self):
@@ -61,10 +59,10 @@ class Issue:
 
             time = datetime.strptime(time, "%Y-%m-%d %H:%M:%S.%f").astimezone(tz)
 
-        body = RESOURCE.replace("{RES_VER}", res_ver).replace("{RES_TIME}", str(time))
-        body = body.replace("{NOTICE_URL}", NOTICE_URL).replace(
-            "{DOWNLOAD_URL}", DOWNLOAD_URL
-        )
+        body = RESOURCE.replace("{RES_VER}", res_ver)
+        body = body.replace("{RES_TIME}", str(time)[:-3])
+        body = body.replace("{NOTICE_URL}", NOTICE_URL)
+        body = body.replace("{DOWNLOAD_URL}", DOWNLOAD_URL)
         body = body.replace("{TIME}", str(update_time))
 
         self.REPO.get_issue(RES_ISSUE_ID).edit(body=body)
