@@ -12,7 +12,7 @@ RELEASE_TIME_PATH = Path(Path.cwd(), "release_time")
 NOTE_PATH = Path(Path.cwd(), "note.md")
 NOTICE_URL = "https://mmirror.top/post/gong-gao.html"
 DOWNLOAD_URL = "https://mmirror.top/download.html"
-RES_ISSUE_ID = 27
+RES_ISSUE_ID = 27  # https://github.com/MaaMirror/Maa-Mirror/issues/27
 
 
 class Issue:
@@ -60,7 +60,7 @@ class Issue:
             time = datetime.strptime(time, "%Y-%m-%d %H:%M:%S.%f").astimezone(tz)
 
         body = RESOURCE.replace("{RES_VER}", res_ver)
-        body = body.replace("{RES_TIME}", str(time)[:-3])
+        body = body.replace("{RES_TIME}", str(time)[:-3])  # 切片，保留微秒前三位
         body = body.replace("{NOTICE_URL}", NOTICE_URL)
         body = body.replace("{DOWNLOAD_URL}", DOWNLOAD_URL)
         body = body.replace("{TIME}", str(update_time))

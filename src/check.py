@@ -12,6 +12,18 @@ RESOURCE_TIME_PATH = Path(Path.cwd(), "res_time")
 NOTE_PATH = Path(Path.cwd(), "note.md")
 
 
+def check_in_progress(token) -> bool:
+    _GH = github.Github(login_or_token=token, retry=None)
+    _REPO = _GH.get_repo("weinibuliu/Maa-Mirror-Script")
+    workflows = _REPO.get_workflow_runs().get_page(0)
+    workflows.pop(0)  # 排除自身
+
+    for w in workflows:
+        if w.status == "in_progress":
+            return True
+    return False
+
+
 class MAA:
     def __init__(self, token: str):
         self.token = token
@@ -24,17 +36,6 @@ class MAA:
 
         with open(VERSION_PATH, "r", encoding="utf-8") as f:
             return f.read()
-
-    def check_in_progress(self) -> bool:
-        GH = github.Github(login_or_token=self.token, retry=None)
-        REPO = GH.get_repo("weinibuliu/Maa-Mirror-Script")
-        workflows = REPO.get_workflow_runs().get_page(0)
-        workflows.pop(0)  # 排除自身
-
-        for w in workflows:
-            if w.status == "in_progress":
-                return True
-        return False
 
     def check(self) -> str | None:
         RELEASE = self.REPO.get_releases().get_page(0)[0]
@@ -62,7 +63,7 @@ class MAA:
 
     def run(self):
         ver = self.check()
-        in_progress = self.check_in_progress()
+        in_progress = check_in_progress(self.token)
         print(f"Update Version = {ver}")
         print(f"in_progress = {in_progress}")
         if ver and not in_progress:
@@ -86,17 +87,6 @@ class Resource:
             ver = info["last_updated"]
             return ver
 
-    def check_in_progress(self) -> bool:
-        GH = github.Github(login_or_token=self.token, retry=None)
-        REPO = GH.get_repo("weinibuliu/Maa-Mirror-Script")
-        workflows = REPO.get_workflow_runs().get_page(0)
-        workflows.pop(0)  # 排除自身
-
-        for w in workflows:
-            if w.status == "in_progress":
-                return True
-        return False
-
     def check(self) -> str | None:
         curent_ver = self.get_current_ver()
 
@@ -112,7 +102,7 @@ class Resource:
 
     def run(self):
         ver = self.check()
-        in_progress = self.check_in_progress()
+        in_progress = check_in_progress(self.token)
         print(f"Update Version = {ver}")
         print(f"in_progress = {in_progress}")
         if ver and not in_progress:
