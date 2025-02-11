@@ -4,3 +4,5 @@ res
 note.md
 test*.*
 devnull
+.venv
+.vscode

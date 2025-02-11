@@ -60,7 +60,7 @@ class Issue:
             time = datetime.strptime(time, "%Y-%m-%d %H:%M:%S.%f").astimezone(tz)
 
         body = RESOURCE.replace("{RES_VER}", res_ver)
-        body = body.replace("{RES_TIME}", str(time)[:-3])  # 切片，保留微秒前三位
+        body = body.replace("{RES_TIME}", str(time).split("+")[0][:-3]+"+08:00")  # 切片，保留微秒前三位
         body = body.replace("{NOTICE_URL}", NOTICE_URL)
         body = body.replace("{DOWNLOAD_URL}", DOWNLOAD_URL)
         body = body.replace("{TIME}", str(update_time))
