@@ -46,7 +46,7 @@ jobs:
           uses: actions/checkout@v4
           with:
             repository: weinibuliu/Maa-Mirror-Secret
-            token: ${{ secrets.API_TOKEN_GITHUB }}
+            token: ${{ secrets.SECRET_TOKEN }}
             path: secret
 
         - name: Move Secret
@@ -96,12 +96,12 @@ jobs:
         - name: Run Issue (MAA)
           if: env.maa == 'true'
           run: |
-            python index.py --issue --token ${{ secrets.API_TOKEN_GITHUB }}
+            python index.py --issue --token ${{ secrets.ISSUE_TOKEN }}
 
         - name: Run Issue (Resource)
           if: env.res == 'true'
           run: |
-            python index.py --issue_res --token ${{ secrets.API_TOKEN_GITHUB }}
+            python index.py --issue_res --token ${{ secrets.ISSUE_TOKEN }}
 
         - name: Commit Version (MAA)
           if: env.maa == 'true'
