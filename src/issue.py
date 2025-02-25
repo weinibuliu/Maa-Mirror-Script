@@ -20,6 +20,9 @@ class Issue:
         GH = github.Github(login_or_token=token, retry=None)
         self.REPO = GH.get_repo("MaaMirror/Maa-Mirror")
 
+    def test(self):
+        self.REPO.create_issue("Test", "This is a test for token.", labels=["update"])
+
     def run(self):
         tz = timezone(timedelta(hours=8))
         _time = datetime.now().timestamp()
@@ -60,7 +63,9 @@ class Issue:
             time = datetime.strptime(time, "%Y-%m-%d %H:%M:%S.%f").astimezone(tz)
 
         body = RESOURCE.replace("{RES_VER}", res_ver)
-        body = body.replace("{RES_TIME}", str(time).split("+")[0][:-3]+"+08:00")  # 切片，保留微秒前三位
+        body = body.replace(
+            "{RES_TIME}", str(time).split("+")[0][:-3] + "+08:00"
+        )  # 切片，保留微秒前三位
         body = body.replace("{NOTICE_URL}", NOTICE_URL)
         body = body.replace("{DOWNLOAD_URL}", DOWNLOAD_URL)
         body = body.replace("{TIME}", str(update_time))
